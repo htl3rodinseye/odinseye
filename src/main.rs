@@ -1,25 +1,31 @@
-use std::env::var_os;
-use std::fs::create_dir;
-use std::path::Path;
+mod fs;
+mod rest;
+mod terminal;
 
-fn create_program_env(root: &str) {
-    let mut program_dir = String::from(root);
-    let home_dir = String::from(root);
+/**
+ * This is the main method for the program
+ * It runs asynchronisly
+ * For this it uses the Tokio framework
+ */
+#[tokio::main]
+async fn main() -> Result<(), reqwest::Error> {
+    let mut exercise_path = String::from("http://localhost:5000/");                                     // Create a variable containing the url from which to fetch the exercise JSON
+    exercise_path.push_str("exercise.json");
 
-    match var_os(program_dir) {
-        Some(program_dir_os) => {
-            program_dir = program_dir_os.into_string().unwrap();
-            program_dir.push_str("/OdinsEye/");
-            if !Path::new(&program_dir).exists() {
-                create_dir(&program_dir).unwrap();
-            } else {
-                println!("Directory already exists!");
-            }
-        }
-        None => println!("{} is not defined in the environment.", home_dir),
-    }
-}
+    let fs_dirs: Vec<&str> = [                                                                          // Create a variable containing the directory-structure to generate
+        "bin", "boot", "dev", "etc", "home", "lib", "lib64", "mnt", "opt", "proc", "root", "run",
+        "sbin", "srv", "sys", "tmp", "usr", "var",
+    ]
+    .to_vec();
 
-fn main() {
-    create_program_env("HOME");
+    fs::create_fs(String::from(""), fs_dirs).unwrap_or(());                                             // Create the filesystem
+
+    let _content = &rest::fetch_text(&exercise_path).await?;                                            // Fetch the exercise JSON-file as text
+    //let json_content = json::parse(&fetch_text(&exercise_path).await?);
+
+    //println!("{}", content);
+
+    terminal::terminal().unwrap_or(());                                                                 // Initialize the terminal
+
+    Ok(())
 }
