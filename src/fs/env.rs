@@ -15,28 +15,25 @@ pub fn get_env_var(var_name: String) -> String {
     return env_var;
 }
 
-// /**
-//  * Returns a String Object containing the current users home-directory path
-//  */
-// pub fn get_home_dir() -> String {
-//     let mut home_dir: String = String::new(); // The path to the users home-directory will be stored here
-//     match var_os("HOME") {
-//         // Match the environment variable $HOME
-//         Some(home_dir_os) => {
-//             // If the match-statement returns a $HOME variable as OsString
-//             home_dir = home_dir_os.into_string().unwrap_or(String::new()); // Try to convert the OsString to a normal String and assign it to the home_dir variable
-//         }
-//         None => println!("{} is not defined in the environment.", home_dir), // If the $HOME variable is not set print an error message
-//     }
-//     return home_dir; // Either return an empty String or the path behind the $Home environment variable
-// }
+/**
+ * Returns a String Object containing the current users home-directory path
+ */
+#[allow(dead_code)]
+pub fn get_home_dir() -> String {
+    let mut home_dir: String = String::new(); // The path to the users home-directory will be stored here
+    match var_os("HOME") {
+        // Match the environment variable $HOME
+        Some(home_dir_os) => {
+            // If the match-statement returns a $HOME variable as OsString
+            home_dir = home_dir_os.into_string().unwrap_or(String::new()); // Try to convert the OsString to a normal String and assign it to the home_dir variable
+        }
+        None => println!("{} is not defined in the environment.", home_dir), // If the $HOME variable is not set print an error message
+    }
+    return home_dir; // Either return an empty String or the path behind the $Home environment variable
+}
 
 pub fn get_working_dir() -> String {
-
-    let pwd = get_env_var(String::from("PWD"));
-
-    let output = Command::new("basename")
-        .arg(pwd)
+    let output = Command::new("pwd")
         .output()
         .expect("failed to execute process");
 

@@ -1,13 +1,16 @@
+// use serde_json::*;
+use json::*;
+
+pub mod terminal;
+
+mod exercise;
 mod fs;
-mod terminal;
+pub mod rest;
 
 /**
  * This is the main method for the program
  */
 fn main() {
-    let mut exercise_path = String::from("http://localhost:5000/"); // Create a variable containing the url from which to fetch the exercise JSON
-    exercise_path.push_str("exercise.json");
-
     // Create a variable containing the directory-structure to generate
     let fs_dirs: Vec<&str> = [
         "bin", "boot", "dev", "etc", "home", "lib", "lib64", "mnt", "opt", "proc", "root", "run",
@@ -15,8 +18,10 @@ fn main() {
     ]
     .to_vec();
 
-    fs::create_fs(String::from(""), fs_dirs).unwrap_or(()); // Create the filesystem
-    //println!("{}", content);
+    fs::create_dir_structure(String::from(""), fs_dirs).unwrap_or(()); // Create the filesystem
 
-    terminal::terminal().unwrap_or(()); // Initialize the terminal
+    let json = json::parse(&rest::fetch_text_sync("http://localhost:5000/exercise.json").unwrap_or(String::new())).unwrap_or(json::JsonValue::Null);
+
+    //exercise::build_exercise(json).unwrap_or(());
+    terminal::terminal().unwrap_or(()); // Spawn the terminal
 }

@@ -1,9 +1,12 @@
+use ansi_term::Colour::*;
 use std::io;
 use std::io::{Error, Write};
 use std::process::Command;
 
+use crate::rest;
+//use crate::exercise;
+
 mod cmd_lib;
-mod rest;
 
 /**
  * Clears stdout
@@ -28,21 +31,24 @@ fn clear_stdout() -> Result<(), Error> {
 pub fn terminal() -> Result<(), Error> {
     clear_stdout()?;
 
-    let mut prompt; // This is the prompt that will be displayed
-
     let mut history: Vec<String> = Vec::new();
 
     loop {
+        let mut prompt = String::new(); // This is the prompt that will be displayed
 
-        prompt = crate::fs::env::get_working_dir();
-        prompt.push_str("> ");
+        let pwd = crate::fs::env::get_working_dir();
+        let dirs = pwd.split("/").collect::<Vec<&str>>();
 
-        let mut input = String::new(); // Instantiate a new String to contain the input from the user
+        prompt.push_str(&Blue.bold().paint(dirs[dirs.len() - 1]).to_string());
+
+        prompt.push_str(&Green.bold().paint(" $ ").to_string());
 
         write!(io::stdout().lock(), "{}", prompt)?; // Writes the prompt to stdout
         io::stdout().flush()?; // Flushes stdout so the prompt is displayed before stdin is read
 
-        // Matches the Result of readin from stdin
+        let mut input = String::new(); // Instantiate a new String to contain the input from the user
+
+        // Matches the Result of read_line from stdin
         match io::stdin().read_line(&mut input) {
             // In case the Result returns Ok() execute the corresponding action
             Ok(_n) => {
@@ -52,13 +58,29 @@ pub fn terminal() -> Result<(), Error> {
                 match cmd.as_str() {
                     "exit" => {
                         break;
-                    },
+                    }
                     "fetch" => {
-                        let text = rest::fetch_text_sync("http://localhost:5000/exercise.json").unwrap_or(String::new());
+                        let text = rest::fetch_text_sync("http://localhost:5000/exercise.json")
+                            .unwrap_or(String::new());
                         println!("{}", text);
-                    },
-                    "history" => { println!("{:?}", history); },
-                    _ => { cmd_lib::run_cmd(&cmd)?; }
+                    }
+                    "history" => {
+                        println!("{:?}", history);
+                    }
+                    "odin info" => {
+                        // =================== HEADER ========================
+                        let mut header = String::new();
+                        header.push_str("   ____      ___      _          ______         \n");
+                        header.push_str("  / __ \\____/ (_)___ ( )_____   / ____/_  _____ \n");
+                        header.push_str(" / / / / __  / / __ \\|// ___/  / __/ / / / / _ \\\n");
+                        header.push_str("/ /_/ / /_/ / / / / / (__  )  / /___/ /_/ /  __/\n");
+                        header.push_str("\\____/\\__,_/_/_/ /_/ /____/  /_____/\\__, /\\___/ \n");
+                        header.push_str("                                   /____/       ");
+                        println!("{}", Yellow.bold().paint(header));
+                    }
+                    _ => {
+                        cmd_lib::run_cmd(&cmd)?;
+                    }
                 }
 
                 if cmd != "" {

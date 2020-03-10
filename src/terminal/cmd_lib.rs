@@ -78,7 +78,7 @@ macro_rules! output {
     }
 }
 
-// XX: hack here to return orignal macro string
+// XX: hack here to return original macro string
 // In future, use proc macro or wait for std provide such a macro
 #[doc(hidden)]
 #[macro_export]
@@ -228,7 +228,7 @@ pub trait ProcessResult {
 ///
 /// Low level process API, wrapper on std::process module
 ///
-/// Pipe command could also lauched in builder style
+/// Pipe command could also launched in builder style
 /// ```rust
 /// use cmd_lib::{Process,CmdResult};
 ///
@@ -383,6 +383,7 @@ fn run_pipe_cmd(full_command: &str, cd_opt: &mut Option<String>) -> CmdResult {
     last_proc.wait::<CmdResult>()
 }
 
+#[allow(dead_code)]
 fn run_pipe_fun(full_command: &str) -> FunResult {
     let pipe_args = parse_pipes(full_command.trim());
     let pipe_argv = parse_argv(pipe_args);
@@ -402,6 +403,7 @@ fn run_pipe_fun(full_command: &str) -> FunResult {
     last_proc.wait::<FunResult>()
 }
 
+#[allow(dead_code)]
 #[doc(hidden)]
 pub fn run_fun(cmds: &str) -> FunResult {
     run_pipe_fun(cmds)
@@ -484,6 +486,7 @@ fn parse_argv(s: String) -> Vec<String> {
         .collect::<Vec<String>>()
 }
 
+#[allow(dead_code)]
 #[doc(hidden)]
 pub fn resolve_name(src: &str, st: &HashMap<String, String>, file: &str, line: u32) -> String {
     let mut output = String::new();
