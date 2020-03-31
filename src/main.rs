@@ -1,5 +1,5 @@
 // use serde_json::*;
-use json::*;
+//use json::*;
 
 pub mod terminal;
 
@@ -20,8 +20,10 @@ fn main() {
 
     fs::create_dir_structure(String::from(""), fs_dirs).unwrap_or(()); // Create the filesystem
 
-    let json = json::parse(&rest::fetch_text_sync("http://localhost:5000/exercise.json").unwrap_or(String::new())).unwrap_or(json::JsonValue::Null);
+    let json = json::parse(&rest::fetch_text_sync("http://caretaker.wurzer.cc:9040/exercises?exid=1").unwrap_or(String::new())).unwrap_or(json::JsonValue::Null);
 
-    //exercise::build_exercise(json).unwrap_or(());
-    terminal::terminal().unwrap_or(()); // Spawn the terminal
+
+
+    exercise::build_exercise(json).unwrap_or(());
+    //terminal::terminal().unwrap_or(()); // Spawn the terminal
 }

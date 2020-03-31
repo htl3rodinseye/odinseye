@@ -1,6 +1,6 @@
 use ansi_term::Colour::*;
 use std::io;
-use std::io::{Error, Write};
+use std::io::{Error, Write, Read};
 use std::process::Command;
 
 use crate::rest;
@@ -70,12 +70,35 @@ pub fn terminal() -> Result<(), Error> {
                     "odin info" => {
                         // =================== HEADER ========================
                         let mut header = String::new();
-                        header.push_str("   ____      ___      _          ______         \n");
-                        header.push_str("  / __ \\____/ (_)___ ( )_____   / ____/_  _____ \n");
-                        header.push_str(" / / / / __  / / __ \\|// ___/  / __/ / / / / _ \\\n");
-                        header.push_str("/ /_/ / /_/ / / / / / (__  )  / /___/ /_/ /  __/\n");
-                        header.push_str("\\____/\\__,_/_/_/ /_/ /____/  /_____/\\__, /\\___/ \n");
-                        header.push_str("                                   /____/       ");
+                        header.push_str("                        -+sso:                        \n");
+                        header.push_str("                      -osssssso:                      \n");
+                        header.push_str("                    -osssssssssso:                    \n");
+                        header.push_str("                  -osssssssssssssso:                  \n");
+                        header.push_str("                -osssssssssssssssssso:                \n");
+                        header.push_str("              -osssssssssssssssssssssso:              \n");
+                        header.push_str("            -osssssssssssssssssssssssssso-            \n");
+                        header.push_str("            ossssssssssso/..:ossssssssssss            \n");
+                        header.push_str("            ossssssss+:`      `:+sssssssss            \n");
+                        header.push_str("            osssss+-`            `-/ssssss            \n");
+                        header.push_str("      -+`   oso/.                    ./oss   `+:      \n");
+                        header.push_str("    -oss.   ..           `..`           `-   `sso:    \n");
+                        header.push_str("  -ossss.             `/ssssss/.             `sssso:  \n");
+                        header.push_str("-osssss/             .ssssssssss.             /osssso-\n");
+                        header.push_str("sssss/               :ssssssssss/               /sssss\n");
+                        header.push_str("-osssss/             .ssssssssss.             /ssssso-\n");
+                        header.push_str("  -ossss.             `/ssssss/`             `sssso:  \n");
+                        header.push_str("    -oss.   ..           `..`           .-   `sso:    \n");
+                        header.push_str("      -+`   oso/.                    ./oss   `+:      \n");
+                        header.push_str("            osssss+-`            `-/ssssss            \n");
+                        header.push_str("            ossssssss+:`      `:+sssssssss            \n");
+                        header.push_str("            ossssssssssso/..:ossssssssssss            \n");
+                        header.push_str("            .osssssssssssssssssssssssssso-            \n");
+                        header.push_str("              -osssssssssssssssssssssso:              \n");
+                        header.push_str("                -osssssssssssssssssso:                \n");
+                        header.push_str("                  -osssssssssssssso:                  \n");
+                        header.push_str("                    -osssssssssso:                    \n");
+                        header.push_str("                      -osssssso:                      \n");
+                        header.push_str("                        -+sso:                       \n");
                         println!("{}", Yellow.bold().paint(header));
                     }
                     _ => {
