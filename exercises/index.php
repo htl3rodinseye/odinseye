@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 
 if(isset($_GET["exid"])) {
 
-	if ($_GET["exid"]===0) {
+	if ($_GET["exid"] == 0) {
 	$sql = "select * from Exercise";
 	$result = $conn->query($sql);
 	while ($row = $result->fetch_assoc()) {
@@ -45,9 +45,7 @@ if(isset($_GET["exid"])) {
                 
             echo json_encode($json_exercise);
 	    }
-	} else {
-	    echo "0 results";
-	}
+	} 
 	$conn->close();
 }
 /*
