@@ -13,15 +13,15 @@ if ($conn->connect_error) {
 
 if(isset($_GET["exid"])) {
 
-	if ($_GET["exid"] == "0") {
+	if ($_GET["exid"] === "0") {
 	$sql = "select * from Exercise";
 	$result = $conn->query($sql);
 	while ($row = $result->fetch_assoc()) {
-		$json_exercise += array(
+		$json_exercise = array_push($json_exercise, array(
 				"Id" => $row["pk_id"],
 				"name" => $row["name"],
 				"description" => $row["description"]
-		);
+		));
 			echo json_encode($json_exercise);
 		}
 	} else {
