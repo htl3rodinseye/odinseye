@@ -1,0 +1,23 @@
+{
+	"id": 0,
+	"name": "Exercise 1",
+	"status": false,
+	"desc": "Description of Exercise 1",
+	"category": "Basic Commands",
+	"root": "home/odin",
+	"cmd_list": [
+		"ls",
+		"cd",
+		"echo",
+		"cat",
+		"mkdir"	
+	],
+	"structure": {
+		"Documents": {
+			"File1": "Content of File1",
+			"Folder1": {
+				"File2": "Content of File2"
+			}
+		}
+	}
+}
