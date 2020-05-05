@@ -1,0 +1,238 @@
+:root {
+  --color-primary: #1b1b1b;
+  --color-primary-accent-1: #2c2c2c;
+  --color-primary-accent-2: #363636;
+  --color-primary-accent-3: #474747;
+  --color-primary-accent-4: #535353;
+  --color-secondary: #0d7377;
+  --color-secondary-accent-1: #0ec3b6;
+  --color-complementary: #ffffff;
+}
+
+* {
+  font-family: "", Arial, serif;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-gap: 2.5vw;
+}
+
+.wrapper {
+  padding: 16px;
+}
+.wrapper[padd="1px"] {
+  padding: 1px;
+}
+.wrapper[padd="2px"] {
+  padding: 2px;
+}
+.wrapper[padd="3px"] {
+  padding: 3px;
+}
+.wrapper[padd="4px"] {
+  padding: 4px;
+}
+.wrapper[padd="5px"] {
+  padding: 5px;
+}
+.wrapper[padd="6px"] {
+  padding: 6px;
+}
+.wrapper[padd="7px"] {
+  padding: 7px;
+}
+.wrapper[padd="8px"] {
+  padding: 8px;
+}
+.wrapper[padd="9px"] {
+  padding: 9px;
+}
+.wrapper[padd="10px"] {
+  padding: 10px;
+}
+.wrapper[padd="11px"] {
+  padding: 11px;
+}
+.wrapper[padd="12px"] {
+  padding: 12px;
+}
+.wrapper[padd="13px"] {
+  padding: 13px;
+}
+.wrapper[padd="14px"] {
+  padding: 14px;
+}
+.wrapper[padd="15px"] {
+  padding: 15px;
+}
+.wrapper[padd="16px"] {
+  padding: 16px;
+}
+.wrapper[padd="1vh"] {
+  padding: 1vh;
+}
+.wrapper[padd="2vh"] {
+  padding: 2vh;
+}
+.wrapper[padd="3vh"] {
+  padding: 3vh;
+}
+.wrapper[padd="4vh"] {
+  padding: 4vh;
+}
+.wrapper[padd="5vh"] {
+  padding: 5vh;
+}
+.wrapper[padd="1vw"] {
+  padding: 1vw;
+}
+.wrapper[padd="2vw"] {
+  padding: 2vw;
+}
+.wrapper[padd="3vw"] {
+  padding: 3vw;
+}
+.wrapper[padd="4vw"] {
+  padding: 4vw;
+}
+.wrapper[padd="5vw"] {
+  padding: 5vw;
+}
+
+.trennstrich {
+  width: 85%;
+  height: 1px;
+  background-color: var(--color-complementary);
+  margin: 0.5em auto;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-complementary);
+}
+
+/*Farbcontrolls*/
+.color-secondary {
+  background-color: var(--color-secondary);
+}
+
+/*Components*/
+.ode-nav-button {
+  min-width: fit-content;
+  max-width: 100%;
+  font-size: 1.5rem;
+  background: var(--color-primary-accent-2);
+  color: var(--color-complementary);
+  text-decoration: none;
+  padding: 0.4em;
+  display: flex;
+  place-items: center;
+}
+.ode-nav-button:hover {
+  background-color: var(--color-primary-accent-1);
+  transition: background-color 0.1s;
+}
+.ode-nav-button:active {
+  background-color: var(--color-primary);
+  transition: background-color 0.01s;
+}
+.ode-nav-button.router-link-exact-active {
+  padding: 0.4em 0.4em 0.4em 0.1em;
+  border-left: 0.3em solid var(--color-secondary-accent-1);
+  background-color: var(--color-primary-accent-4);
+}
+
+.ode-box {
+  color: var(--color-complementary);
+  background: var(--color-primary-accent-2);
+  border-radius: 10px;
+  min-height: fit-content;
+  max-height: 100%;
+}
+.ode-box h1 {
+  background-color: var(--color-secondary-accent-1);
+  border-bottom: 4px solid var(--color-secondary);
+  box-shadow: 0 4px 1px var(--color-primary-accent-1);
+  padding: 10px;
+  margin: auto;
+  text-align: center;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+.ode-box div p {
+  font-size: 1.5em;
+}
+
+.ladeleiste {
+  background-color: var(--color-primary-accent-4);
+  height: fit-content;
+  border-radius: 50px;
+  padding: 8px;
+  margin: 16px 0;
+}
+.ladeleiste div {
+  border-radius: inherit;
+  background-color: var(--color-secondary);
+  justify-content: space-between;
+  padding: 2px 10px;
+}
+
+/*Elements*/
+button, .button {
+  position: relative;
+  font-size: 0.4em;
+  background-color: #00000000;
+  color: var(--color-complementary);
+  padding: 0.4em;
+  border: 5px solid var(--color-secondary);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  /*border: 4px solid var(--color-accent-s1);*/
+}
+button:hover, .button:hover {
+  position: relative;
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  transform: scale(1);
+}
+button.raised, .button.raised {
+  box-shadow: 0 6px 0 0 var(--color-secondary);
+  top: -3px;
+}
+button.raised:hover, .button.raised:hover {
+  top: 0;
+  background-color: var(--color-complementary);
+  box-shadow: 0 3px var(--color-secondary);
+  transform: scale(1);
+}
+button.raised:active, .button.raised:active {
+  position: relative;
+  top: 3px;
+  background-color: var(--color-secondary-accent-1);
+  box-shadow: none;
+  transform: scale(1);
+}
+button i, .button i {
+  font-size: 0.9em;
+}
+
+/*# sourceMappingURL=main.css.map */
