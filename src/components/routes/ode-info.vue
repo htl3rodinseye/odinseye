@@ -18,7 +18,7 @@
       </div>
       <a href="https://github.com/htl3rodinseye/odinseye"><i class="fab fa-github"/></a>
     </ode-box>
-    <ode-box id="ode-info-stand" title="Stand">
+    <ode-box id="ode-info-stand" title="Aktueller Stand">
       <div class="wrapper">
         <ode-ladeleiste :percentage="43" color="#DD382F" title="Website"/>
         <ode-ladeleiste :percentage="40" color="#744390" title="Backend"/>

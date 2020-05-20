@@ -14,6 +14,7 @@
 </script>
 
 <style>
+
   @import './assets/css/main.css';
   #app {
     height: 100vh;

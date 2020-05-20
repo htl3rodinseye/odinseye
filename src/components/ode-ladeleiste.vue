@@ -7,8 +7,10 @@
         'background-color': color,
         'width': percentage + '%'
       }">
-        <span v-if="title">{{title}}:</span>
-        <span v-if="percentage > 20">{{percentage}}%</span>
+        <template v-if="title && percentage > 20">
+          <span>{{title}}:</span>
+          <span>{{percentage}}%</span>
+        </template>
       </div>
     </div>
   </div>

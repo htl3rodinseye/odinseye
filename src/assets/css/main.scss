@@ -9,6 +9,17 @@
   --color-complementary: #ffffff;
 }
 
+.theme-light {
+  --color-primary: #1b1b1b;
+  --color-primary-accent-1: #2c2c2c;
+  --color-primary-accent-2: #363636;
+  --color-primary-accent-3: #474747;
+  --color-primary-accent-4: #535353;
+  --color-secondary: #0d7377;
+  --color-secondary-accent-1: #0ec3b6;
+  --color-complementary: #ffffff;
+}
+
 * {
   font-family: "", Arial, serif;
 }
@@ -197,7 +208,7 @@ a {
   min-height: fit-content;
   max-height: 100%;
 
-  & h1 {
+  & > h1 {
     background-color: var(--color-secondary-accent-1);
     border-bottom: 4px solid var(--color-secondary);
     box-shadow: 0 4px 1px var(--color-primary-accent-1);

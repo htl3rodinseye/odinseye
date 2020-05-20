@@ -1,6 +1,7 @@
 <template>
   <div id="ode-aufgaben">
     <!--<router-link to="/">back</router-link>-->
+    <button :click="getTasks()">Update Data</button>
     <div class="grid">
       <ode-box v-for="task in tasks"
                :title="task.name">
@@ -12,40 +13,36 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import OdeBox from "../ode-box";
 
   export default {
     name: "Aufgaben",
     components: {OdeBox},
-    data () {
+    data() {
       return {
-        loading: false,
-        post: null,
-        error: null
+        tasks: {}
       }
-    },
-    created () {
-      // fetch the data when the view is created and the data is
-      // already being observed
-      this.fetchData()
     },
     watch: {
       // call again the method if the route changes
       '$route': 'fetchData'
     },
     methods: {
-      fetchData () {
-        this.error = this.post = null
-        this.loading = true
-        // replace `getPost` with your data fetching util / API wrapper
-        getPost(this.$route.params.id, (err, post) => {
-          this.loading = false
-          if (err) {
-            this.error = err.toString()
-          } else {
-            this.post = post
+      getTasks() {
+        let url = 'http://caretaker.wurzer.cc:9040/exercises/'
+        axios.get(url, {
+          crossdomain: true,
+          params: {
+            exid: 0
           }
         })
+          .then(data => {
+            this.tasks = data.json
+          })
+          .catch(err => {
+            console.error(err)
+          })
       }
     }
   }
