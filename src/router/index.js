@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import odeAufgaben from '../components/routes/ode-aufgaben';
+import odeAufgabe from '../components/routes/ode-aufgabe';
 import odeOverview from '../components/routes/ode-overview';
 import odeInfo from '../components/routes/ode-info'
 import odeStatistic from '../components/routes/ode-statistic'
@@ -20,7 +21,12 @@ export default new Router({
       component: odeAufgaben
     },
     {
-      path: '/statistic',
+      path: '/task/:id',
+      name: 'ode-aufgabe',
+      component: odeAufgabe
+    },
+    {
+      path: '/statistic/',
       name: 'ode-statistic',
       component: odeStatistic
     },

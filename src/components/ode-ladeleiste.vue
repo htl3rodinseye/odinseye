@@ -8,8 +8,8 @@
         'width': percentage + '%'
       }">
         <template v-if="title && percentage > 20">
-          <span>{{title}}:</span>
-          <span>{{percentage}}%</span>
+          <span class="noselect">{{title}}:</span>
+          <span class="noselect">{{percentage}}%</span>
         </template>
       </div>
     </div>

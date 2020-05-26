@@ -1,7 +1,7 @@
 <template>
   <div class="ode-box">
     <h1 v-if="title">{{title}}</h1>
-    <div :style="padding: padding">
+    <div class="wrapper" padd="10px">
       <slot></slot>
     </div>
   </div>
@@ -12,7 +12,6 @@
     name: "ode-box",
     props: {
       title: String,
-      padding: Number
     }
   }
 </script>

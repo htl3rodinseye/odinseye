@@ -20,11 +20,12 @@
 </template>
 
 <script>
-    import OdeNavButton from "./ode-nav-button";
-    export default {
-        name: "ode-nav-bar",
-      components: {OdeNavButton}
-    }
+  import OdeNavButton from "./ode-nav-button";
+
+  export default {
+    name: "ode-nav-bar",
+    components: {OdeNavButton}
+  }
 </script>
 
 <style scoped>

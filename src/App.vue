@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="theme-dark">
     <ode-nav-bar/>
     <router-view class="wrapper" padd="5vh"></router-view>
   </div>

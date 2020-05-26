@@ -19,11 +19,11 @@
       <a href="https://github.com/htl3rodinseye/odinseye"><i class="fab fa-github"/></a>
     </ode-box>
     <ode-box id="ode-info-stand" title="Aktueller Stand">
-      <div class="wrapper">
-        <ode-ladeleiste :percentage="43" color="#DD382F" title="Website"/>
-        <ode-ladeleiste :percentage="40" color="#744390" title="Backend"/>
-        <ode-ladeleiste :percentage="35" color="#73A6FF" title="Datensätze"/>
-        <ode-ladeleiste :percentage="60" color="#60CD54" title="Linux Bash Anwendung"/>
+      <div>
+        <ode-ladeleiste :percentage="70" color="#DD382F" title="Website"/>
+        <ode-ladeleiste :percentage="70" color="#744390" title="Backend"/>
+        <ode-ladeleiste :percentage="75" color="#73A6FF" title="Datensätze"/>
+        <ode-ladeleiste :percentage="80" color="#60CD54" title="Linux Bash Anwendung"/>
       </div>
     </ode-box>
   </div>
@@ -43,7 +43,7 @@
 
   #ode-info {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
   }
 
   #ode-info-text {

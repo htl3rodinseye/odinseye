@@ -1,4 +1,4 @@
-:root {
+.theme-dark {
   --color-primary: #1b1b1b;
   --color-primary-accent-1: #2c2c2c;
   --color-primary-accent-2: #363636;
@@ -10,7 +10,7 @@
 }
 
 .theme-light {
-  --color-primary: #1b1b1b;
+  --color-primary: #dddddd;
   --color-primary-accent-1: #2c2c2c;
   --color-primary-accent-2: #363636;
   --color-primary-accent-3: #474747;
@@ -22,6 +22,17 @@
 
 * {
   font-family: "", Arial, serif;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari /
+     -webkit-user-select: none; / Safari /
+      -khtml-user-select: none; / Konqueror HTML /
+        -moz-user-select: none; / Old versions of Firefox /
+         -ms-user-select: none; / Internet Explorer/Edge /
+             user-select: none; / Non-prefixed version, currently
+                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
 .row {
@@ -186,7 +197,7 @@ a {
   border-top-right-radius: inherit;
 }
 .ode-box div p {
-  font-size: 1.5em;
+  font-size: 1.4em;
 }
 
 .ladeleiste {
