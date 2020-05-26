@@ -9,8 +9,9 @@
     </ode-box>
     <ode-box id="ode-info-download" title="Download">
       <p>
-        Einfach die Binary Datei in der Linux Bash ausführen:<br>
-        <span class="monospaced">User> ./odins_eye</span>
+        Die heruntergeladene Binary Datei kann jetzt per Bash ausgeführt werden.<br>
+        Dazu muss nur der Name der Binary Datei eingegeben werden.<br>
+        <span class="monospaced">User> odins_eye</span>
       </p>
       <div class="row wrapper" style="justify-content: space-between">
         <i class="fab fa-linux"/>
