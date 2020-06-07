@@ -10,4 +10,5 @@ edition = "2018"
 reqwest = { version = "0.10", features = ["json", "blocking"] }
 ansi_term = "0.12.1"
 # serde_json = "1.0.48"
-json = "0.12.1"
+json = "0.12.4"
+text_io = "0.1.8"

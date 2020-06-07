@@ -11,11 +11,15 @@ pub mod env;
 fn generate_program_path(root: String) -> String {
     let mut program_dir: String = super::fs::env::get_env_var(String::from("HOME")); // Save the current users $HOME env-variable in program_dir
     program_dir.push_str(&root); // Append the provided path behind the root variable to the users home-directory path
-    program_dir.push_str("/OdinsEye/"); // Append /OdinsEye/ to the previously created path. This will be used as the root dir of the simulated filestructure
+    program_dir.push_str("/OdinsEye"); // Append /OdinsEye/ to the previously created path. This will be used as the root dir of the simulated filestructure
 
     if !Path::new(&program_dir).exists() {
         // If the Program path does not already exist create it
-        create_dir(&program_dir).unwrap();
+        create_dir(&program_dir).unwrap_or(());
+        program_dir.push_str("/root/");
+        if !Path::new(&program_dir).exists() {
+            create_dir(&program_dir).unwrap_or(());
+        }
     } else {
         // Else print an error message
         println!("Directory structure has already been built!");
@@ -41,7 +45,7 @@ pub fn create_dir_structure(root: String, fs: Vec<&str>) -> Result<(), Error> {
         }
     } else {
         // Else print an error message
-        println!("Filesystem generation not possible!");
+        println!("Directory structure generation not possible!");
     }
 
     Ok(())
