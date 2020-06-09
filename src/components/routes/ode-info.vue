@@ -8,23 +8,25 @@
       </p>
     </ode-box>
     <ode-box id="ode-info-download" title="Download">
-      <p>
-        Die heruntergeladene Binary Datei kann jetzt per Bash ausgeführt werden.<br>
-        Dazu muss nur der Name der Binary Datei eingegeben werden.<br>
-        <span class="monospaced">User> odins_eye</span>
-      </p>
-      <div class="row wrapper" style="justify-content: space-between">
-        <i class="fab fa-linux"/>
-        <a class="button" href="./static/odins_eye" download><i class="fas fa-download"/> Download</a>
+      <div class="col">
+        <p>
+          Die heruntergeladene Binary Datei kann jetzt per Bash ausgeführt werden.<br>
+          Dazu muss nur der Name der Binary Datei eingegeben werden.<br>
+          <span class="monospaced">User> odins_eye</span>
+        </p>
+        <div class="row wrapper" style="justify-content: space-between; font-size: 5em">
+          <i class="fab fa-linux"/>
+          <a class="button" href="./static/odins_eye" download><i class="fas fa-download"/> Download</a>
+        </div>
+        <a href="https://github.com/htl3rodinseye/odinseye" style="font-size: 3em"><i class="fab fa-github"/></a>
       </div>
-      <a href="https://github.com/htl3rodinseye/odinseye"><i class="fab fa-github"/></a>
     </ode-box>
     <ode-box id="ode-info-stand" title="Aktueller Stand">
       <div>
-        <ode-ladeleiste :percentage="70" color="#DD382F" title="Website"/>
-        <ode-ladeleiste :percentage="70" color="#744390" title="Backend"/>
-        <ode-ladeleiste :percentage="75" color="#73A6FF" title="Datensätze"/>
-        <ode-ladeleiste :percentage="80" color="#60CD54" title="Linux Bash Anwendung"/>
+        <ode-ladeleiste :percentage="95" color="#DD382F" title="Website"/>
+        <ode-ladeleiste :percentage="98.7" color="#744390" title="Backend"/>
+        <ode-ladeleiste :percentage="98" color="#73A6FF" title="Datensätze"/>
+        <ode-ladeleiste :percentage="98.35" color="#60CD54" title="Linux Bash Anwendung"/>
       </div>
     </ode-box>
   </div>
@@ -56,7 +58,7 @@
   }
 
   #ode-info-download div {
-    font-size: 5em;
+
   }
 
   /*#ode-info-download a {

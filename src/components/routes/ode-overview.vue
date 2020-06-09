@@ -19,9 +19,11 @@
         </div>
         <p>Hier sind zusätzliche Informationen zum Projekt und ein Installationsguide</p>
       </ode-box-route>
-      <ode-box class="span-2">
-        <a class="button" href="./static/odins_eye" download><i class="fas fa-download"/> Download</a>
-      </ode-box>
+      <!--<ode-box class="span-2">
+        <div style="font-size: 5em">
+          <a class="button" href="./static/odins_eye" download><i class="fas fa-download"/> Download</a>
+        </div>
+      </ode-box>-->
     </div>
   </div>
 </template>

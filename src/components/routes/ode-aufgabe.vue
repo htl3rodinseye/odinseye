@@ -1,31 +1,38 @@
 <template>
-  <ode-box id="ode-Aufgabe" class="">
-    <h1>{{task.name}}</h1>
-    <span>Status: {{task.status}}</span>
+
+  <div>
+    <ode-box id="ode-Aufgabe"
+           :title="task.name" style="margin: 12vw">
+    <h1>Kategorie: {{task.group_name}}</h1>
+    <span>{{task.description}}</span>
   </ode-box>
+  </div>
 </template>
 
 <script>
 
   import OdeBox from "../ode-box";
+
   export default {
     name: "ode-aufgabe",
     components: {OdeBox},
     data() {
-      return {}
+      return {
+        task: {}
+      }
     },
     created() {
       this.getTask()
     },
     methods: {
-      getTasks: async function () {
-        console.log('Aufgabe/getTasks()');
-        console.log(this.$router.id);
+      getTask: async function () {
+        console.log('Aufgabe/getTask()');
+        console.log(this.$route.params.id);
         let url = 'http://caretaker.wurzer.cc:9040/exercises/';
         try {
-          console.log('Aufgabe/getTasks(): Data loaded');
+          console.log('Aufgabe/getTask(): Data loaded');
 
-          let resp = await fetch(url + '?exid=' + this.$router.id).then(response => {
+          let resp = await fetch(url + '?exid=' + this.$route.params.id).then(response => {
             return response.json()
           });
           this.task = resp;

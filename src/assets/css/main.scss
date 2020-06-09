@@ -21,7 +21,8 @@
 }
 
 * {
-  font-family: "", Arial, serif;
+  font-family: 'Open Sans', sans-serif, Arial, serif;
+  box-sizing: border-box;
 }
 
 .noselect {
@@ -58,7 +59,7 @@
   display: grid;
   grid-gap: 2.5vw;
   & .span-2{
-    grid-row: span 2;
+    grid-col: span 2;
   }
 }
 
@@ -261,7 +262,7 @@ a {
 /*Elements*/
 button, .button {
   position: relative;
-  font-size: .4em;
+  font-size: 2em;
   background-color: #00000000;
   color: var(--color-complementary);
   padding: .4em;
