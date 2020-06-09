@@ -1,5 +1,6 @@
 use ansi_term::Colour::*;
 use json::JsonValue;
+use std::collections::HashMap;
 use std::io;
 use std::io::{Error, Write};
 use std::process::Command;
@@ -65,13 +66,17 @@ pub fn terminal() -> Result<(), Error> {
     print!("{}", &Green.bold().paint("odin help "));
     println!("to get an overview!");
 
+    let mut cl_map: HashMap<String, bool> = HashMap::new();
+    // static mut cl_vec: Vec<bool> = Vec::new();
+    let mut executed: usize;
+
     loop {
         let mut prompt = String::new(); // This is the prompt that will be displayed
 
         let pwd = crate::fs::env::get_working_dir();
         let dirs = pwd.split("/").collect::<Vec<&str>>();
 
-        if dirs[dirs.len() - 1] == "root" {
+        if dirs[dirs.len() - 1] == "root" && pwd == root_dir {
             prompt.push_str(&Blue.bold().paint("/").to_string());
         } else {
             prompt.push_str(&Blue.bold().paint(dirs[dirs.len() - 1]).to_string());
@@ -84,14 +89,16 @@ pub fn terminal() -> Result<(), Error> {
 
         let mut input = String::new(); // Instantiate a new String to contain the input from the user
 
+        // let json_cl: JsonValue = JsonValue::Null;
+
         // Matches the Result of read_line from stdin
         match io::stdin().read_line(&mut input) {
             // In case the Result returns Ok() execute the corresponding action
             Ok(_n) => {
-                let mut cmd = input.clone();
-                cmd.pop();
+                let mut input_command = input.clone();
+                input_command.pop();
 
-                match cmd.as_str() {
+                match input_command.as_str() {
                     "exit" => {
                         break;
                     }
@@ -158,7 +165,7 @@ pub fn terminal() -> Result<(), Error> {
                         println!("{}", list);
                     }
                     "odin exercise" => {
-                        let mut ex_id: String = String::new();
+                        let mut id: String = String::new();
                         println!("Which exercise would you like to select?");
 
                         let all_exercises = json::parse(
@@ -180,35 +187,131 @@ pub fn terminal() -> Result<(), Error> {
 
                         write!(io::stdout(), "Choose an exercise: ")?;
                         io::stdout().flush()?;
-                        io::stdin().read_line(&mut ex_id).unwrap_or(0);
+                        io::stdin().read_line(&mut id).unwrap_or(0);
 
-                        let mut url: String =
-                            String::from("http://caretaker.wurzer.cc:9040/exercises?exid=");
-                        url.push_str(&ex_id);
+                        if !id.eq(""){
+                            let mut url_ex: String =
+                                String::from("http://caretaker.wurzer.cc:9040/exercises?exid=");
+                            url_ex.push_str(&id);
+                            let json_ex = json::parse(
+                                &rest::fetch_text_sync(&url_ex).unwrap_or(String::new()),
+                            )
+                            .unwrap_or(json::JsonValue::Null);
 
-                        let json =
-                            json::parse(&rest::fetch_text_sync(&url).unwrap_or(String::new()))
-                                .unwrap_or(json::JsonValue::Null);
+                            let mut url_cl: String =
+                                String::from("http://caretaker.wurzer.cc:9040/exercises?clid=");
+                            url_cl.push_str(&id);
+                            let json_cl = json::parse(
+                                &rest::fetch_text_sync(&url_cl).unwrap_or(String::new()),
+                            )
+                            .unwrap_or(json::JsonValue::Null);
 
-                        print_exercise(exercise::build_exercise(json)).unwrap_or(());
+                            cl_map = HashMap::new();
+
+                            for cmd in json_cl.members() {
+                                // let temp_vec = cmd.as_str().unwrap_or("").split(" ").collect::<Vec<&str>>();
+                                // let mut copy_vec: Vec<String> = Vec::new();
+                                // for e in temp_vec.iter() {
+                                //     copy_vec.push(e.replace(" ", ""));
+                                // }
+                                cl_map.insert(cmd.as_str().unwrap_or("").replace(" ", ""), false);
+                                // println!("{}", cmd);
+                                // unsafe {
+                                //     cl_vec.push(false);
+                                // }
+                            }
+
+                            let mut url_st: String =
+                                String::from("http://caretaker.wurzer.cc:9040/exercises?stid=");
+                            url_st.push_str(&id);
+                            let _st = &rest::fetch_text_sync(&url_st).unwrap_or(String::new());
+                            // let json_st = json::parse(st).unwrap_or(json::JsonValue::Null);
+
+                            print_exercise(exercise::build_exercise(json_ex)).unwrap_or(());
+                            // clear_stdout()?;
+                            // println!("No exercise was chosen!");
+
+                            // println!("{}", id);
+                            // println!("{}", json_cl);
+                            // println!("{}", st);
+                        } else {
+                            clear_stdout()?;
+                            println!("{}", &Red.bold().paint("No exercise was chosen!"));
+                        }
                     }
                     _ => {
-                        if pwd == root_dir && cmd.contains("..") {
+                        if pwd == root_dir && input_command.contains("..") {
                             println!("You are already in the root directory");
                         } else {
-                            cmd_lib::run_cmd(&cmd)?;
+                            // let cmd_parts_input = input_command.split(" ").collect::<Vec<&str>>();
+                            // let mut cmd_parts_trimmed: Vec<String> = Vec::new();
+                            // for part in cmd_parts_input {
+                            //     cmd_parts_trimmed.push(part.replace(" ", ""));
+                            // }
+                            // let mut cmd_parts_list: Vec<Vec<&str>> = Vec::new();
+
+                            let cmd_trimmed = input_command.replace(" ", "");
+
+                            // for cmd in json_cl.members() {
+                            //     cmd_parts_list.push(
+                            //         cmd.as_str().unwrap_or("").split(" ").collect::<Vec<&str>>(),
+                            //     );
+                            // }
+
+                            if cl_map.contains_key(&cmd_trimmed) { 
+                                cl_map.entry(cmd_trimmed).insert(true);
+                            }
+
+                            // for (i, e) in cmd_parts_list.iter().enumerate() {
+                            //     if cmd_parts_trimmed.eq(e) {
+                            //         unsafe {
+                            //             cl_vec.get(i).replace(&true);
+                            //         }
+                            //     }
+                            // }
+
+                            cmd_lib::run_cmd(&input_command)?;
+                            // println!("{}: {}", cmd_trimmed);
+
+                            let mut temp = 0;
+                            for (_k, v) in cl_map.iter() {
+                                if v == &true {
+                                    temp += 1;
+                                }
+                                // println!("{} -> {}", k, v);
+                            }
+                            // unsafe {
+                            //     for b in &cl_vec {
+                            //         if *b {
+                            //             temp += 1
+                            //         }
+                            //     }
+                            // }
+                            executed = temp;
+                            if cl_map.len() != 0 && executed == cl_map.len() {
+                                // clear_stdout()?;
+                                println!("{}", &Green.bold().paint("Exercise completed!"));
+                                cl_map.clear();
+                            }
+                            // unsafe {
+                            // if cl_map.len() != 0 && executed == cl_map.len() {
+                            //     clear_stdout()?;
+                            //     // println!("{}", &Green.bold().paint("Exercise completed!"));
+                            //     executed = 0;
+                            //     cl_map.clear();
+                            // }
+                            // }
+                            // println!("{}", executed);
                         }
                     }
                 }
-
-                if cmd != "" {
-                    history.push(cmd.clone());
+                if input_command != "" {
+                    history.push(input_command.clone());
                 }
             }
             Err(error) => println!("error: {}", error), // In case the Result returns Err() print the error
         }
     }
-
     Ok(())
 }
 

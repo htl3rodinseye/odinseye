@@ -1,3 +1,6 @@
+#![feature(entry_insert)]
+
+
 pub mod terminal;
 pub mod cmd_lib;
 
