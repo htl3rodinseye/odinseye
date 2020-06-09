@@ -10,9 +10,9 @@
     <ode-nav-button route="/tasks">
       <i class="fas fa-glasses"/>
     </ode-nav-button>
-    <ode-nav-button route="/statistic">
+    <!--<ode-nav-button route="/statistic">
       <i class="fas fa-chart-pie"/>
-    </ode-nav-button>
+    </ode-nav-button>-->
     <ode-nav-button route="/info">
       <i class="fas fa-question-circle"></i>
     </ode-nav-button>
@@ -29,5 +29,7 @@
 </script>
 
 <style scoped>
+
+
 
 </style>

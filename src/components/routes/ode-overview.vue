@@ -7,18 +7,21 @@
         </div>
         <p>Hier kannst du alle Aufgaben einsehen</p>
       </ode-box-route>
-      <ode-box-route title="Statistics" to="">
+      <!--<ode-box-route title="Statistics" to="">
         <div class="col">
           <i class="fas fa-chart-pie"/>
         </div>
         <p>Hier kannst du deinen Fortschritt aller Aufgaben zu jeder Kategorie einsehen</p>
-      </ode-box-route>
+      </ode-box-route>-->
       <ode-box-route title="Information" to="/info">
         <div class="col">
           <i class="fas fa-question-circle"/>
         </div>
         <p>Hier sind zusätzliche Informationen zum Projekt und ein Installationsguide</p>
       </ode-box-route>
+      <ode-box class="span-2">
+        <a class="button" href="./static/odins_eye" download><i class="fas fa-download"/> Download</a>
+      </ode-box>
     </div>
   </div>
 </template>
@@ -36,8 +39,8 @@
 <style scoped>
 
   #ode-overview > div.grid {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
   }
 
   a {

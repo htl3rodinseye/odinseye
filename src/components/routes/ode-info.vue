@@ -44,7 +44,7 @@
 
   #ode-info {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto;
   }
 
   #ode-info-text {
