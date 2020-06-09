@@ -14,16 +14,21 @@ Such a file typically contains the exercises **id, name, root, and folder/file-s
 
 ## Installation
 
-COMING SOON !
+No installation needed! Just visit [Our Website](http://caretaker.wurzer.cc:9040/#/info) and download the binary file.
 
 ## Usage
 
+To run the application just execute the binary file from any terminal by typing **./odins_eye**
+
 ### Startup
+
+When the application is first launched you will be greeted by a startup screen which will provide you with useful information on how to use the program.
 
 ### Selecting an exercise
 
+By typing the command **odin exercise** you can select an exercise to do. 
+
 ### Access documentation
 
-## Contributing
+On selection of an exercise you will recieve instructions on how to finish it.
 
-## TODO
