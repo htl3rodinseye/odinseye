@@ -70,6 +70,8 @@ pub fn terminal() -> Result<(), Error> {
     // static mut cl_vec: Vec<bool> = Vec::new();
     let mut executed: usize;
 
+    let mut ex_id: String = String::new();
+
     loop {
         let mut prompt = String::new(); // This is the prompt that will be displayed
 
@@ -189,6 +191,8 @@ pub fn terminal() -> Result<(), Error> {
                         io::stdout().flush()?;
                         io::stdin().read_line(&mut id).unwrap_or(0);
 
+                        ex_id = String::from(&id);
+
                         if !id.eq(""){
                             let mut url_ex: String =
                                 String::from("http://caretaker.wurzer.cc:9040/exercises?exid=");
@@ -290,7 +294,9 @@ pub fn terminal() -> Result<(), Error> {
                             executed = temp;
                             if cl_map.len() != 0 && executed == cl_map.len() {
                                 // clear_stdout()?;
-                                println!("{}", &Green.bold().paint("Exercise completed!"));
+                                print!("{}", &Green.bold().paint("Übung "));
+                                print!("{}", &Green.bold().paint(ex_id.trim()));
+                                print!("{}", &Green.bold().paint(" abgeschlossen!\n"));
                                 cl_map.clear();
                             }
                             // unsafe {
