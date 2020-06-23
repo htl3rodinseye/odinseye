@@ -1,10 +1,10 @@
 <template>
 
-  <div>
+  <div class="center">
     <ode-box id="ode-Aufgabe"
-           :title="task.name" style="margin: 12vw">
+           :title="task.name">
     <h1>Kategorie: {{task.group_name}}</h1>
-    <span>{{task.description}}</span>
+    <p>{{task.description}}</p>
   </ode-box>
   </div>
 </template>
@@ -41,7 +41,6 @@
 
           console.log('Aufgaben/getTasks(): Data processed');
 
-          this.getGroups()
         } catch (err) {
           console.error(err)
         }
@@ -51,5 +50,11 @@
 </script>
 
 <style scoped>
+
+  /*@media (min-width: 768px) {
+    #ode-Aufgabe{
+      margin-top: 20%;
+    }
+  }*/
 
 </style>

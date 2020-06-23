@@ -14,8 +14,8 @@
           Dazu muss nur der Name der Binary Datei eingegeben werden.<br>
           <span class="monospaced">User> odins_eye</span>
         </p>
-        <div class="row wrapper" style="justify-content: space-between; font-size: 5em">
-          <i class="fab fa-linux"/>
+        <div class="row wrapper">
+          <i class="fab fa-linux" style="font-size: 4em"/>
           <a class="button" href="./static/odins_eye" download><i class="fas fa-download"/> Download</a>
         </div>
         <a href="https://github.com/htl3rodinseye/odinseye" style="font-size: 3em"><i class="fab fa-github"/></a>
@@ -24,9 +24,9 @@
     <ode-box id="ode-info-stand" title="Aktueller Stand">
       <div>
         <ode-ladeleiste :percentage="95" color="#DD382F" title="Website"/>
-        <ode-ladeleiste :percentage="98.7" color="#744390" title="Backend"/>
+        <ode-ladeleiste :percentage="100" color="#744390" title="Backend"/>
         <ode-ladeleiste :percentage="98" color="#73A6FF" title="Datensätze"/>
-        <ode-ladeleiste :percentage="98.35" color="#60CD54" title="Linux Bash Anwendung"/>
+        <ode-ladeleiste :percentage="100" color="#60CD54" title="Linux Bash Anwendung"/>
       </div>
     </ode-box>
   </div>
@@ -53,23 +53,20 @@
     grid-column: span 4;
   }
 
-  #ode-info-download {
-
-  }
-
-  #ode-info-download div {
-
-  }
-
-  /*#ode-info-download a {
-    font-size: 3.5em;
-    width: 100%;
-    margin: auto;
-  }*/
-
   #ode-info-stand {
     grid-column: span 5;
   }
 
+  @media (max-width: 768px) {
+    #ode-info{
+      grid-template-columns: 1fr;
+    }
+    #ode-info-text {
+      grid-column: span 1;
+    }
+    #ode-info-stand {
+      grid-column: span 1;
+    }
+  }
 
 </style>

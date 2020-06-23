@@ -13,14 +13,14 @@
                      :to="'/task/'+task.id"
                      v-if="selected === 'Alle'"
                      :title="task.group_name + ' - ' + task.id">
-        <h1>{{task.name}}</h1>
+        <p>{{task.name}}</p>
         <!--<p>{{task.description}}</p>-->
       </ode-box-route>
       <ode-box-route v-for="task in tasks"
                      :to="'/task/'+task.id"
                      v-if="selected !== 'Alle' && task.group_name === selected"
                      :title="task.group_name + ' - ' + task.id">
-        <h1>{{task.name}}</h1>
+        <p>{{task.name}}</p>
         <!--<p>{{task.description}}</p>-->
       </ode-box-route>
     </div>
@@ -80,9 +80,21 @@
 
 <style scoped>
 
-  #ode-aufgaben > div.grid {
+  #ode-aufgaben > .grid {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
+  }
+
+  @media (min-width: 425px) and (max-width: 768px) {
+    #ode-aufgaben > div.grid{
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 425px) {
+    #ode-aufgaben > div.grid{
+      grid-template-columns: 1fr;
+    }
   }
 
 </style>

@@ -26,7 +26,6 @@
   }
   #app nav{
     height: 100%;
-    grid-column: 0/1;
 
     background-color: var(--color-primary-accent-2);
   }

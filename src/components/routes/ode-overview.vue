@@ -57,4 +57,10 @@
     font-size: 5em;
   }
 
+  @media (max-width: 768px) {
+    #ode-overview > div.grid{
+      grid-template-columns: 1fr;
+    }
+  }
+
 </style>
